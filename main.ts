@@ -13,5 +13,10 @@ let BravDauer = 0
 let BravLimit = 30000
 pins.servoWritePin(AnalogPin.C17, BravZustand)
 basic.forever(function () {
-	
+    BravDauer = input.runningTime() - BravStart
+    if (BravDauer > BravLimit) {
+        if (BravZustand > 0) {
+            BravZustand += -40
+        }
+    }
 })
