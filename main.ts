@@ -48,5 +48,26 @@ basic.forever(function () {
             basic.pause(10)
             Aktuell = input.runningTime()
         }
+        basic.showNumber(Count)
+        basic.setLedColor(0xffff00)
+        if (Count > 20) {
+            for (let index = 0; index < 4; index++) {
+                motors.motorPower(100)
+                basic.pause(500)
+                motors.motorCommand(MotorCommand.Break)
+                basic.pause(200)
+                motors.motorPower(-100)
+                basic.pause(500)
+                motors.motorCommand(MotorCommand.Break)
+                basic.pause(200)
+            }
+            basic.pause(500)
+            if (BravZustand < 160) {
+                BravZustand += 40
+                pins.servoWritePin(AnalogPin.C17, BravZustand)
+                BravStart = input.runningTime()
+                basic.pause(500)
+            }
+        }
     }
 })
